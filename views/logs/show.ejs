@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="/stylesheets/flash.css">
+    <title>Show Log</title>
+</head>
+
+<body>
+
+    <%- include('../partials/navbar.ejs') %>
+
+    <%- include('../partials/flash.ejs') %>
+
+    <main>
+        <div class="link-container">
+            <a class="link-top" href="/logs"><span class='arrow'>&#8592;</span> Back to Logs</a>
+        </div>
+        <div class='flex-row'>
+            <div class="h1-container">
+                <h1><%= log.title %></h1>
+            </div>
+            <% if(currentUser && log.author.equals(currentUser._id)) { %>
+            <div class="link-container">
+                <button class="button-svg" title="Edit or Delete">
+                    <svg id="dots" viewBox="0 0 212 64" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M32 0A32 32 0 0 0 0 32a32 32 0 0 0 32 32 32 32 0 0 0 32-32A32 32 0 0 0 32 0Zm74 0a32 32 0 0 0-32 32 32 32 0 0 0 32 32 32 32 0 0 0 32-32 32 32 0 0 0-32-32Zm74 0a32 32 0 0 0-32 32 32 32 0 0 0 32 32 32 32 0 0 0 32-32 32 32 0 0 0-32-32Z" />
+                    </svg>
+                </button>
+                <div class="h1-contents">
+                    <div class="toggle-container">
+                        <ul>
+                            <a href="/logs/<%= log.slugLog %>/edit">
+                                <li>Edit</li>
+                            </a>
+                            <form action="/logs/<%= log.slugLog %>?_method=DELETE" method="POST">
+                                <button id="deleteLog">
+                                    <li>Delete</li>
+                                </button>
+                            </form>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+        <hr />
+        <div class="flex-row margin-2">
+            <div class="h2-container">
+                <h2>Exercises</h2>
+            </div>
+            <div class="link-container">
+                <a href="/logs/<%= log.slugLog %>/exercises/new" title="Create New">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="cross-h2">
+                        <path d="M40 40h24V25H40V0H25v25H0v15h25v24h15z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <%- include('../partials/paginateExercises') %>
+
+        <div class="ul-container">
+            <ul>
+                <% for (let logItem of logAggregate){%>
+                <% if(currentUser && logItem.exercises.author.equals(currentUser._id)) { %>
+                <a href="/logs/<%= log.slugLog %>/exercises/<%= logItem.exercises.slugExercise %>">
+                    <li><%= logItem.exercises.title%> </li>
+                </a>
+                <% } %>
+                <% } %>
+            </ul>
+        </div>
+
+    </main>
+    <script src="/javascripts/confirmDelete.js"></script>
+    <script src="/javascripts/main.js"></script>
+</body>
+
+</html>

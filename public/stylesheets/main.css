@@ -1,0 +1,422 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+  --myBlack: #222222;
+  --mediumGrey: #7d7d7d;
+  --darkGrey: #3d3d3d;
+  --myWhite: #f2f2f2;
+  --gold: #ffd600;
+
+  --fontS1: 2.5rem;
+  --fontS2: 1.8rem;
+  --fontS3: 1.3rem;
+  --fontS4: 1.125rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  box-sizing: border-box;
+  list-style-type: none;
+  text-decoration: none;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: var(--myBlack);
+}
+
+button {
+  cursor: pointer;
+}
+
+/* NAVBAR START */
+.section-navbar {
+  min-height: 3rem;
+  background-color: var(--darkGrey);
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.nav-link {
+  color: var(--myWhite);
+  font-size: var(--fontS4);
+  padding: 0.8rem;
+}
+
+.nav-link:where(:hover, :focus) {
+  border-bottom: 2px solid var(--gold);
+}
+
+.nav-link.current-page {
+  border-bottom: 2px solid var(--gold);
+}
+
+/* NAVBAR END */
+
+/* HOMEPAGE START */
+.homepage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* HOMEPAGE END */
+
+/* LOGIN START */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* LOGIN END */
+
+/* MAIN START */
+hr {
+  margin-left: 1rem;
+  height: 2px;
+  background-color: var(--gold);
+  width: 50%;
+  opacity: 50%;
+}
+
+.link,
+.button {
+  word-break: keep-all;
+  cursor: pointer;
+  line-height: 100%;
+  padding: 0.3rem 0.6rem 0.3rem 0.6rem;
+  border-radius: 0.5rem;
+  transition: 0.5s;
+  font-weight: 700;
+}
+
+label {
+  padding: 0.5rem;
+  display: inline-block;
+  height: fit-content;
+  line-height: 160%;
+}
+
+input[type='text'],
+input[type='date'],
+input[type='number'],
+input[type='password'] {
+  border: 2px solid var(--myBlack);
+  margin-right: 0.3rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+}
+
+input[type='date'] {
+  height: 1.7rem;
+}
+
+input[type='number'] {
+  width: 4.5rem;
+}
+
+.link-container,
+.ul-container,
+.form-container,
+.h1-container,
+.h2-container,
+.p-container,
+.table-container,
+.pagination-container,
+.barchart {
+  margin: 0rem 1rem 1rem 1rem;
+}
+
+.margin-1 {
+  margin-top: 1rem;
+}
+
+.margin-2 {
+  margin-top: 2rem;
+}
+
+.color-darkG {
+  color: var(--darkGrey);
+}
+
+main {
+  margin: 3%;
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  color: var(--myBlack);
+  background-color: var(--gold);
+}
+
+.button:where(:hover, :focus) {
+  color: var(--gold);
+  background-color: var(--mediumGrey);
+}
+
+h1 {
+  font-size: var(--fontS1);
+  color: var(--myWhite);
+  line-height: 100%;
+}
+
+h2 {
+  font-size: var(--fontS2);
+  color: var(--myWhite);
+  line-height: 140%;
+}
+
+h3 {
+  font-size: var(--fontS3);
+  color: var(--myWhite);
+  line-height: 180%;
+}
+
+.main-p {
+  background-color: inherit;
+  color: var(--myWhite);
+  font-size: var(--fontS4);
+}
+
+.link-container {
+  position: relative;
+}
+
+.ul-container ul,
+.form-contents {
+  background-color: var(--darkGrey);
+  border-radius: 0.5rem;
+  min-width: 7.5rem;
+  width: fit-content;
+  height: fit-content;
+  color: var(--myWhite);
+}
+
+.toggle-container {
+  background-color: var(--darkGrey);
+  border-radius: 0.5rem;
+  min-width: max-content;
+  width: fit-content;
+  height: fit-content;
+}
+
+.toggle-container li {
+  padding: 0.3rem 0.6rem 0.3rem 0.6rem;
+  border-radius: 0.5rem;
+  transition: 0.2s;
+}
+
+.toggle-container a {
+  color: var(--myWhite);
+  line-height: 100%;
+}
+
+.toggle-container button {
+  background-color: inherit;
+  color: var(--myWhite);
+  line-height: 100%;
+}
+
+.toggle-container li:where(:hover, :focus) {
+  background-color: var(--mediumGrey);
+}
+
+.ul-container ul li,
+.form-contents div {
+  padding: 0.3rem;
+  transition: background-color 0.5s;
+  border-radius: 0.5rem;
+}
+
+.ul-container ul li:where(:hover, :focus) {
+  background-color: var(--mediumGrey);
+}
+
+.ul-container ul a {
+  color: var(--myWhite);
+  font-size: var(--fontS3);
+  transition: 0.2s;
+}
+
+.h1-contents {
+  display: none;
+  position: absolute;
+  top: -1rem;
+  left: 3rem;
+}
+
+.arrow {
+  font-size: var(--fontS3);
+  color: var(--gold);
+}
+
+.link-top {
+  color: var(--myWhite);
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  transition: 0.5s;
+}
+
+.link-top:where(:hover, :focus) {
+  color: var(--mediumGrey);
+}
+
+#cross-h1 {
+  width: 24px;
+  height: 24px;
+  fill: var(--gold);
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+#cross-h2 {
+  width: 20px;
+  height: 20px;
+  fill: var(--gold);
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+#cross-h1:where(:hover, :focus),
+#cross-h2:where(:hover, :focus) {
+  fill: var(--mediumGrey);
+}
+
+#dots {
+  width: 35px;
+  height: 40px;
+  fill: var(--gold);
+  transition: 0.5s;
+}
+
+#dots:where(:hover, :focus) {
+  fill: var(--mediumGrey);
+}
+
+.button-svg {
+  background-color: inherit;
+  word-break: keep-all;
+}
+
+.link {
+  color: var(--myBlack);
+  background-color: var(--myWhite);
+}
+
+.link:where(:hover, :focus) {
+  background-color: var(--mediumGrey);
+  color: var(--myWhite);
+}
+
+.h1-link {
+  color: var(--myWhite);
+  background-color: var(--darkGrey);
+  padding: 0.1rem 0.2rem 0.1rem 0.2rem;
+  border-radius: 0.5rem;
+  transition: 0.5s;
+}
+
+.h1-link:where(:hover, :focus) {
+  background-color: var(--mediumGrey);
+}
+
+.flex-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.flex-row-table {
+  display: flex;
+  justify-content: flex-start;
+  overflow: auto;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  color: var(--myWhite);
+  background-color: var(--darkGrey);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  transition: 0.5s;
+}
+
+.table-a {
+  width: fit-content;
+}
+
+.table-a:where(:hover, :focus) table {
+  background-color: var(--mediumGrey);
+}
+
+td,
+th {
+  padding: 0.3rem;
+  line-height: 160%;
+}
+/* MAIN END */
+/* PAGINATION START */
+.pagination {
+  display: flex;
+}
+
+.page-item {
+  border: 1px solid var(--myWhite);
+  padding: 0.3rem;
+}
+
+.page-link {
+  color: var(--myWhite);
+  transition: 0.5s;
+}
+
+.page-link:where(:hover, :focus) {
+  color: var(--mediumGrey);
+}
+/* PAGINATION END */
+/* CHART START */
+.barchart {
+  background-color: var(--darkGrey);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  width: 50%;
+}
+
+.bar {
+  fill: var(--myWhite);
+  transition: 0.5s;
+  stroke: var(--darkGrey);
+  stroke-width: 15px;
+}
+
+.bar:where(:hover, :focus) {
+  fill: var(--mediumGrey);
+}
+
+.text {
+  fill: var(--gold);
+  text-shadow: 1px 1px 2px rgba(34, 34, 34, 1);
+  font-size: var(--fontS3);
+  font-weight: 700;
+}
+/* CHART END */

@@ -1,0 +1,26 @@
+<header>
+    <nav class="section-navbar">
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="/" class="nav-link current-page" id="home">Home</a>
+            </li>
+        </ul>
+        <ul class="nav-menu">
+            <% if(!currentUser) { %>
+            <li class="nav-item">
+                <a href="/login" class="nav-link">Login</a>
+            </li>
+            <li class="nav-item">
+                <a href="/register" class="nav-link">Register</a>
+            </li>
+            <% } else { %>
+            <li class="nav-item">
+                <a href="/logs" class="nav-link"><%= currentUser.username %></a>
+            </li>
+            <li class="nav-item">
+                <a href="/logout" class="nav-link">Logout</a>
+            </li>
+            <% } %>
+        </ul>
+    </nav>
+</header>

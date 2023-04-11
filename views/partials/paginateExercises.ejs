@@ -1,0 +1,26 @@
+<div class="pagination-container">
+    <nav aria-label="Exercises Pagination">
+        <ul class="pagination">
+            <% if (currentPage == totalPages && totalPages > 1) { %>
+            <li class="page-item">
+                <a class="page-link" href="/logs/<%= log.slugLog %>?page=<%= parseInt(currentPage) -1 %>"><span
+                        area-hidden="true">&laquo;</span></a>
+            </li>
+            <% } %>
+            <% if(totalPages > 1 && totalDocuments) { %>
+            <% for(let i = startPage; i <= endPage; i++) { %>
+            <li class="page-item">
+                <a class="page-link" href="/logs/<%= log.slugLog %>?page=<%= i %>"
+                    <%= i === parseInt(currentPage) ? 'style=color:#000000' : '' %>><%= i %></a>
+            </li>
+            <% } %>
+            <% } %>
+            <% if(currentPage == 1 && totalPages > 1) { %>
+            <li class="page-item">
+                <a class="page-link" href="/logs/<%= log.slugLog %>?page=<%= parseInt(currentPage) + 1 %>"><span
+                        area-hidden="true">&raquo;</span></a>
+            </li>
+            <% } %>
+        </ul>
+    </nav>
+</div>

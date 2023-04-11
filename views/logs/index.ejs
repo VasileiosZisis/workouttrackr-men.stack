@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/flash.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <title>My Logs</title>
+</head>
+
+<body>
+
+    <%- include('../partials/navbar.ejs') %>
+
+    <%- include('../partials/flash.ejs') %>
+
+    <main>
+        <div class="flex-row">
+            <div class="h1-container">
+                <h1>Logs</h1>
+            </div>
+            <div class="link-container">
+                <a href="/logs/new" title="Create New">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="cross-h1">
+                        <path d="M40 40h24V25H40V0H25v25H0v15h25v24h15z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <hr />
+        <div class=" h2-container margin-2">
+            <h2>List</h2>
+        </div>
+
+        <%- include('../partials/paginateLogs') %>
+
+        <div class="ul-container">
+            <ul>
+                <% for (let log of logs) { %>
+                <% if(currentUser && log.author.equals(currentUser._id)) { %>
+                <a href="/logs/<%= log.slugLog %>">
+                    <li><%= log.title %></li>
+                </a>
+                <% } %>
+                <% } %>
+            </ul>
+        </div>
+    </main>
+    <script src="/javascripts/main.js"></script>
+</body>
+
+</html>

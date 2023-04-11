@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <title>Create new Exercise</title>
+</head>
+
+<body>
+
+    <%- include('../partials/navbar.ejs') %>
+
+    <main>
+        <div class="h1-container margin-1">
+            <h1>Add a new Exercise</h1>
+        </div>
+        <div class="p-container">
+            <p class="main-p">Enter the name of your new exercise.</p>
+            <br>
+            <p class="main-p">It can contain letters[a-z], numbers[0-9], space[&nbsp;&nbsp;], hyphen[&nbsp;-&nbsp;] and
+                underscore[&nbsp;_&nbsp;]</p>
+        </div>
+        <div class="form-container">
+            <form action="/logs/<%= log.slugLog %>/exercises" method="POST">
+                <div class="form-contents">
+                    <label for="title">Exercise</label>
+                    <input type="text" id="title" name="title" pattern="[a-zA-Z0-9 _-]+" required autofocus>
+                </div>
+                <div class="flex-row margin-1">
+                    <div class="link-container">
+                        <a class="link" href="/logs/<%= log.slugLog %>">Cancel</a>
+                    </div>
+                    <div class="link-container">
+                        <button class="button">Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>

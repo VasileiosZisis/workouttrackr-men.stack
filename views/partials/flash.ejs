@@ -1,0 +1,14 @@
+<div class="flash-container">
+    <% if(success && success.length) { %>
+    <div class="alert alert-success">
+        <p class="alert-p"><%= success %></p><span class="close">&times;</span>
+    </div>
+    <% } %>
+
+    <% if(error && error.length) { %>
+    <div class="alert alert-error">
+        <p class="alert-p"><%= error %></p><span class="close">&times;</span>
+    </div>
+    <% } %>
+</div>
+<script src="/javascripts/flash.js"></script>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <title>Edit Log</title>
+</head>
+
+<body>
+
+    <%- include('../partials/navbar.ejs') %>
+
+    <main>
+        <div class="h1-container margin-1">
+            <h1>Edit <%= log.title %></h1>
+        </div>
+        <div class="form-container">
+            <form action="/logs/<%= log.slugLog %>?_method=PUT" method="POST">
+                <div class="form-contents">
+                    <div>
+                        <label for="title">Name:</label>
+                        <input type="text" id="title" name="title" value="<%=log.title%>" pattern="[a-zA-Z0-9 _-]+"
+                            required autofocus>
+                    </div>
+                </div>
+                <div class="flex-row margin-1">
+                    <div class="link-container">
+                        <a class="link" href="/logs/<%= log.slugLog %>">Cancel</a>
+                    </div>
+                    <div class="link-container">
+                        <button class="button">Update</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>
