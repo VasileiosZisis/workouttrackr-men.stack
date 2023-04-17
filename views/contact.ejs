@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="/stylesheets/flash.css">
+    <title>Contact</title>
+</head>
+
+<body>
+    <%- include('./partials/navbar.ejs') %>
+    <%- include('./partials/flash.ejs') %>
+    <main>
+        <form action="/contact" method="POST" class="login-form">
+            <div>
+                <div>
+                    <h3>
+                        <label for="name">Name</label>
+                    </h3>
+                </div>
+                <div>
+                    <input type="text" id="name" name="name" required autofocus>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <h3>
+                        <label for="email">Email</label>
+                    </h3>
+                </div>
+                <div>
+                    <input type="email" name="email" id="email" required>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <h3>
+                        <label for="message">Message</label>
+                    </h3>
+                </div>
+                <div>
+                    <textarea name="message" cols="30" rows="10" required></textarea>
+                </div>
+            </div>
+            <div class="margin-1">
+                <button class="button" type="submit" value="Submit">Submit</button>
+            </div>
+        </form>
+    </main>
+    <script src="/javascripts/main.js"></script>
+</body>
+
+</html>
