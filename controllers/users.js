@@ -6,7 +6,7 @@ module.exports.registerUserForm = (req, res) => {
 
 module.exports.createUser = async (req, res, next) => {
   try {
-    const { username, password } = req.body;
+    const { email, username, password } = req.body;
     const user = new User({ username });
     if (password.length >= 6) {
       const registeredUser = await User.register(user, password);

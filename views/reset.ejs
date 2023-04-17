@@ -7,42 +7,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/flash.css">
     <link rel="stylesheet" href="/stylesheets/main.css">
-    <title>Login</title>
+    <title>Reset</title>
 </head>
 
 <body>
-    <%- include('../partials/navbar.ejs') %>
-    <%- include('../partials/flash.ejs') %>
+    <%- include('./partials/navbar.ejs') %>
+    <%- include('./partials/flash.ejs') %>
     <main>
-        <% if(!currentUser) { %>
-        <form action="/login" method="POST" class="login-form">
+        <form action="/reset/<%= token %>" method="POST" class="login-form">
             <div>
                 <div>
                     <h3>
-                        <label for="username">Username</label>
+                        <label for="password">New Password</label>
                     </h3>
                 </div>
                 <div>
-                    <input type="text" id="username" name="username" required autofocus>
+                    <input type="password" name="password" id="password" required autofocus>
                 </div>
             </div>
             <div>
                 <div>
                     <h3>
-                        <label for="password">Password</label>
+                        <label for="password">Confirm Password</label>
                     </h3>
                 </div>
                 <div>
-                    <input type="password" name="password" id="password" required>
+                    <input type="password" name="Confirm" id="password" required>
                 </div>
             </div>
             <div class="margin-1">
-                <button class="button" type="submit" value="Submit">Login</button>
+                <button class="button" type="submit" value="Update Password">Update Password</button>
             </div>
         </form>
-        <% } else { %>
-        <p class="main-p">You are already logged in.</p>
-        <% } %>
     </main>
     <script src="/javascripts/main.js"></script>
 </body>
