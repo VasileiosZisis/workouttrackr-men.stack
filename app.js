@@ -55,7 +55,7 @@ app.use(
 
 app.use(methodOverride('_method'));
 app.use(mongoSanitize());
-app.use(helmet());
+app.use(helmet({ crossOriginEmbedderPolicy: false }));
 
 const scriptSrcUrls = ['https://cdn.jsdelivr.net/npm/d3@7'];
 const styleSrcUrls = ['https://fonts.googleapis.com'];
@@ -64,18 +64,18 @@ const fontSrcUrls = ['fonts.gstatic.com'];
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ["'self'"],
+      defaultSrc: [],
       connectSrc: ["'self'"],
       scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
       styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
       workerSrc: ["'self'", 'blob:'],
-      objectSrc: ["'none'"],
-      // imgSrc: [
-      //     "'self'",
-      //     "blob:",
-      //     "data:",
-      //     "https://res.cloudinary.com/dmdbza74n",
-      // ],
+      objectSrc: [],
+      imgSrc: [
+        "'self'",
+        'blob:',
+        'data:',
+        'https://res.cloudinary.com/dmdbza74n/',
+      ],
       fontSrc: ["'self'", ...fontSrcUrls],
     },
   })

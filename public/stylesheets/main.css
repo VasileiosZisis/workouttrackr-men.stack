@@ -70,9 +70,176 @@ button {
 
 /* HOMEPAGE START */
 .homepage {
+  margin: 0;
+}
+
+.section-1 {
+  position: relative;
+  text-align: center;
+  color: var(--darkGrey);
+  height: 95vh;
+  width: 100%;
+}
+
+.imgBG-home {
+  width: 100%;
+  height: 100%;
+  opacity: 10%;
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.h1-home {
+  font-size: 3.5rem;
+  line-height: 120%;
+  letter-spacing: 0.1rem;
+}
+
+.font-3 {
+  font-size: 4.5rem;
+}
+
+.register-home {
+  word-break: keep-all;
+  line-height: 100%;
+  padding: 0.3rem 0.6rem 0.3rem 0.6rem;
+  border-radius: 0.5rem;
+  transition: 0.5s;
+  font-weight: 700;
+  color: var(--myBlack);
+  background-color: var(--gold);
+  font-size: var(--fontS2);
+}
+
+.register-home:where(:hover, :focus) {
+  color: var(--gold);
+  background-color: var(--mediumGrey);
+}
+
+.section-2 {
+  background-color: var(--myWhite);
+  width: 100%;
+  min-height: 95vh;
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+.section-2 > * {
+  margin: 2rem;
+}
+
+.h2-home-black {
+  color: var(--myBlack);
+  font-size: var(--fontS1);
+}
+
+.p-home-black {
+  color: var(--myBlack);
+  font-size: var(--fontS3);
+}
+
+.img-home {
+  height: auto;
+  max-width: 100%;
+  border-radius: 0.5rem;
+}
+
+.section-3 {
+  background-color: var(--darkGrey);
+  width: 100%;
+  min-height: 95vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-3 > * {
+  margin: 2rem;
+}
+
+.h2-home-white {
+  color: var(--myWhite);
+  font-size: var(--fontS1);
+}
+
+.p-home-white {
+  color: var(--myWhite);
+  font-size: var(--fontS3);
+}
+
+.section-4 {
+  background-color: var(--myWhite);
+  width: 100%;
+  min-height: 95vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.section-4 > * {
+  margin: 2rem;
+}
+
+.div-s-4a {
+  padding-bottom: 17rem;
+}
+
+.div-s-4b {
+  padding-top: 17rem;
+}
+
+.img-home-padding {
+  height: 250px;
+  max-width: 100%;
+  border-radius: 0.5rem;
+}
+
+.div-s-5a {
+  height: 47vh;
+  background-color: var(--darkGrey);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.div-s-5b {
+  height: 47vh;
+  background-color: var(--myWhite);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-home {
+  word-break: keep-all;
+  line-height: 100%;
+  padding: 0.3rem 0.6rem 0.3rem 0.6rem;
+  border-radius: 0.5rem;
+  transition: 0.5s;
+  font-weight: 700;
+  color: var(--myBlack);
+  background-color: var(--gold);
+  font-size: var(--fontS2);
+  box-shadow: 1px 2px 8px var(--myBlack);
+}
+
+.contact-home:where(:hover, :focus) {
+  color: var(--gold);
+  background-color: var(--mediumGrey);
 }
 /* HOMEPAGE END */
 
@@ -97,11 +264,21 @@ hr {
 .button {
   word-break: keep-all;
   cursor: pointer;
-  line-height: 100%;
+  line-height: 110%;
   padding: 0.3rem 0.6rem 0.3rem 0.6rem;
   border-radius: 0.5rem;
   transition: 0.5s;
   font-weight: 700;
+}
+
+.button {
+  color: var(--myBlack);
+  background-color: var(--gold);
+}
+
+.button:where(:hover, :focus) {
+  color: var(--gold);
+  background-color: var(--mediumGrey);
 }
 
 label {
@@ -158,16 +335,6 @@ main {
   margin: 3%;
   display: flex;
   flex-direction: column;
-}
-
-.button {
-  color: var(--myBlack);
-  background-color: var(--gold);
-}
-
-.button:where(:hover, :focus) {
-  color: var(--gold);
-  background-color: var(--mediumGrey);
 }
 
 h1 {
