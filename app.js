@@ -20,12 +20,31 @@ const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
+const MongoStore = require('connect-mongo');
+const dbUrl = 'mongodb://localhost:27017/track-my-progress';
+// process.env.DB_URL
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 app.use(express.static(path.join(__dirname, '/public')));
 
+//'mongodb://localhost:27017/track-my-progress'
+mongoose.connect(dbUrl, {
+  useUnifiedTopology: true,
+});
+
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  secret: 'tempsecret',
+  touchAfter: 24 * 60 * 60,
+});
+
+store.on('error', function (e) {
+  console.log('Session Store Error', e);
+});
+
 const sessionConfig = {
+  store,
   name: 'session',
   secret: 'tempsecret',
   resave: false,
@@ -93,10 +112,6 @@ app.use('/', userRoutes);
 app.use('/logs', logRoutes);
 app.use('/logs/:slugLog/exercises', exerciseRoutes);
 app.use('/logs/:slugLog/exercises/:slugExercise/sessions', sessionRoutes);
-
-mongoose.connect('mongodb://localhost:27017/track-my-progress', {
-  useUnifiedTopology: true,
-});
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
