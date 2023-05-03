@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Session = require('./session');
+const Trsession = require('./trsession');
 const slug = require('mongoose-slug-updater');
 mongoose.plugin(slug);
 
@@ -23,15 +23,15 @@ const exerciseSchema = new Schema(
   { timestamps: true }
 );
 
-exerciseSchema.virtual('sessions', {
-  ref: 'Session',
+exerciseSchema.virtual('Trsessions', {
+  ref: 'Trsession',
   localField: '_id',
   foreignField: 'exercise',
 });
 
 exerciseSchema.post('findOneAndDelete', async function (doc) {
   if (doc) {
-    await Session.deleteMany({
+    await Trsession.deleteMany({
       exercise: doc._id,
     });
   }

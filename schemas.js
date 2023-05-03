@@ -40,7 +40,7 @@ module.exports.exerciseSchema = Joi.object({
     .required(),
 });
 
-module.exports.sessionSchema = Joi.object({
+module.exports.trsessionSchema = Joi.object({
   createdDate: Joi.date().required(),
   weights: Joi.array().items(
     Joi.object({

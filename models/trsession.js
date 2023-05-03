@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const slug = require('mongoose-slug-updater');
 mongoose.plugin(slug);
 
-const sessionSchema = new Schema(
+const trsessionSchema = new Schema(
   {
     createdDate: {
       type: Date,
@@ -51,4 +51,4 @@ const sessionSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Session', sessionSchema);
+module.exports = mongoose.model('Trsession', trsessionSchema);

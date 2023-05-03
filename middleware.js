@@ -2,11 +2,11 @@ const ExpressError = require('./utils/ExpressError');
 const {
   logSchema,
   exerciseSchema,
-  sessionSchema,
+  trsessionSchema,
 } = require('./validations.js');
 const Log = require('./models/log');
 const Exercise = require('./models/exercise');
-const Session = require('./models/session');
+const Trsession = require('./models/trsession');
 
 module.exports.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
@@ -53,8 +53,8 @@ module.exports.isExerciseAuthor = async (req, res, next) => {
   next();
 };
 
-module.exports.isSessionAuthor = async (req, res, next) => {
-  const session = await Session.findOne({
+module.exports.isTrsessionAuthor = async (req, res, next) => {
+  const trsession = await Trsession.findOne({
     slugSession: req.params.slugSession,
   });
   const log = await Log.findOne({ slugLog: req.params.slugLog });
@@ -77,13 +77,13 @@ module.exports.isSessionAuthor = async (req, res, next) => {
     req.flash('error', 'You do not have permission to do that!');
     return res.redirect('/');
   }
-  if (!session) {
+  if (!trsession) {
     req.flash('error', 'The session does not exist');
     return res.redirect(
       `/logs/${log.slugLog}/exercises/${exercise.slugExercise}`
     );
   }
-  if (!session.author.equals(req.user._id)) {
+  if (!trsession.author.equals(req.user._id)) {
     req.flash('error', 'You do not have permission to do that!');
     return res.redirect('/');
   }
@@ -110,8 +110,8 @@ module.exports.validateExercise = (req, res, next) => {
   }
 };
 
-module.exports.validateSession = (req, res, next) => {
-  const { error } = sessionSchema.validate(req.body);
+module.exports.validateTrsession = (req, res, next) => {
+  const { error } = trsessionSchema.validate(req.body);
   if (error) {
     const msg = error.details.map((el) => el.message).join(',');
     throw new ExpressError(msg, 400);

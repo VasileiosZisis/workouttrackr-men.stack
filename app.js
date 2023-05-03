@@ -9,7 +9,7 @@ const linksRouter = require('./routes/links');
 const userRoutes = require('./routes/users');
 const logRoutes = require('./routes/logs.js');
 const exerciseRoutes = require('./routes/exercises.js');
-const sessionRoutes = require('./routes/sessions.js');
+const trsessionRoutes = require('./routes/trsessions.js');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const flash = require('connect-flash');
@@ -28,7 +28,6 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 app.use(express.static(path.join(__dirname, '/public')));
 
-//'mongodb://localhost:27017/track-my-progress'
 mongoose.connect(dbUrl, {
   useUnifiedTopology: true,
 });
@@ -111,7 +110,7 @@ app.use(linksRouter);
 app.use('/', userRoutes);
 app.use('/logs', logRoutes);
 app.use('/logs/:slugLog/exercises', exerciseRoutes);
-app.use('/logs/:slugLog/exercises/:slugExercise/sessions', sessionRoutes);
+app.use('/logs/:slugLog/exercises/:slugExercise/trsessions', trsessionRoutes);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

@@ -8,7 +8,7 @@ module.exports.exerciseSchema = Joi.object({
   title: Joi.string().pattern(new RegExp('[a-zA-Z0-9 _-]+')).required(),
 });
 
-module.exports.sessionSchema = Joi.object({
+module.exports.trsessionSchema = Joi.object({
   createdDate: Joi.date().required(),
   weights: Joi.array().items(
     Joi.object({

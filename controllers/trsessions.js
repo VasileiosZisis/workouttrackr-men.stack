@@ -1,6 +1,6 @@
 const Log = require('../models/log');
 const Exercise = require('../models/exercise');
-const Session = require('../models/session');
+const Trsession = require('../models/trsession');
 
 module.exports.index = async (req, res) => {
   const log = await Log.findOne({ slugLog: req.params.slugLog });
@@ -10,73 +10,73 @@ module.exports.index = async (req, res) => {
   res.redirect(`/logs/${log.slugLog}/exercises/${exercise.slugExercise}`);
 };
 
-module.exports.newSessionForm = async (req, res) => {
+module.exports.newTrsessionForm = async (req, res) => {
   const log = await Log.findOne({ slugLog: req.params.slugLog });
   const exercise = await Exercise.findOne({
     slugExercise: req.params.slugExercise,
   });
-  res.render('sessions/new', { log, exercise });
+  res.render('trsessions/new', { log, exercise });
 };
 
-module.exports.createSession = async (req, res) => {
+module.exports.createTrsession = async (req, res) => {
   const log = await Log.findOne({ slugLog: req.params.slugLog });
   const exercise = await Exercise.findOne({
     slugExercise: req.params.slugExercise,
   });
-  const session = new Session(req.body);
-  session.author = req.user._id;
-  session.exercise = exercise._id;
-  await session.save();
+  const trsession = new Trsession(req.body);
+  trsession.author = req.user._id;
+  trsession.exercise = exercise._id;
+  await trsession.save();
   req.flash('success', 'New session has been created');
   res.redirect(
-    `/logs/${log.slugLog}/exercises/${exercise.slugExercise}/sessions`
+    `/logs/${log.slugLog}/exercises/${exercise.slugExercise}/trsessions`
   );
 };
 
-module.exports.showSession = async (req, res) => {
+module.exports.showTrsession = async (req, res) => {
   const log = await Log.findOne({ slugLog: req.params.slugLog });
   const exercise = await Exercise.findOne({
     slugExercise: req.params.slugExercise,
   });
-  const session = await Session.findOne({
+  const trsession = await Trsession.findOne({
     slugSession: req.params.slugSession,
   }).populate('author');
-  res.render('sessions/show', { log, exercise, session });
+  res.render('trsessions/show', { log, exercise, trsession });
 };
 
-module.exports.editSessionForm = async (req, res) => {
+module.exports.editTrsessionForm = async (req, res) => {
   const log = await Log.findOne({ slugLog: req.params.slugLog });
   const exercise = await Exercise.findOne({
     slugExercise: req.params.slugExercise,
   });
-  const session = await Session.findOne({
+  const trsession = await Trsession.findOne({
     slugSession: req.params.slugSession,
   });
-  res.render('sessions/edit', { log, exercise, session });
+  res.render('trsessions/edit', { log, exercise, trsession });
 };
 
-module.exports.updateSession = async (req, res) => {
+module.exports.updateTrsession = async (req, res) => {
   const log = await Log.findOne({ slugLog: req.params.slugLog });
   const exercise = await Exercise.findOne({
     slugExercise: req.params.slugExercise,
   });
-  const session = await Session.findOneAndUpdate(
+  const trsession = await Trsession.findOneAndUpdate(
     { slugSession: req.params.slugSession },
     { ...req.body },
     { returnDocument: 'after' }
   );
   req.flash('success', 'Your changes have been saved');
   res.redirect(
-    `/logs/${log.slugLog}/exercises/${exercise.slugExercise}/sessions/${session.slugSession}`
+    `/logs/${log.slugLog}/exercises/${exercise.slugExercise}/trsessions/${trsession.slugSession}`
   );
 };
 
-module.exports.deleteSession = async (req, res) => {
+module.exports.deleteTrsession = async (req, res) => {
   const log = await Log.findOne({ slugLog: req.params.slugLog });
   const exercise = await Exercise.findOne({
     slugExercise: req.params.slugExercise,
   });
-  await Session.findOneAndDelete({ slugSession: req.params.slugSession });
+  await Trsession.findOneAndDelete({ slugSession: req.params.slugSession });
   req.flash('success', 'Session has been deleted');
   res.redirect(`/logs/${log.slugLog}/exercises/${exercise.slugExercise}`);
 };

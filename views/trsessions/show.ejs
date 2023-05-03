@@ -24,9 +24,9 @@
         </div>
         <div class="flex-row">
             <div class="h1-container">
-                <h1><%= session.createdDate.toLocaleDateString() %></h1>
+                <h1><%= trsession.createdDate.toLocaleDateString() %></h1>
             </div>
-            <% if(currentUser && session.author.equals(currentUser._id)) { %>
+            <% if(currentUser && trsession.author.equals(currentUser._id)) { %>
             <div class="link-container">
                 <button class="button-svg" title="Edit or Delete">
                     <svg id="dots" viewBox="0 0 212 64" xmlns="http://www.w3.org/2000/svg">
@@ -38,11 +38,11 @@
                     <div class="toggle-container">
                         <ul>
                             <a
-                                href="/logs/<%= log.slugLog %>/exercises/<%= exercise.slugExercise %>/sessions/<%= session.slugSession %>/edit">
+                                href="/logs/<%= log.slugLog %>/exercises/<%= exercise.slugExercise %>/trsessions/<%= trsession.slugSession %>/edit">
                                 <li>Edit</li>
                             </a>
                             <form
-                                action="/logs/<%= log.slugLog %>/exercises/<%= exercise.slugExercise %>/sessions/<%= session.slugSession %>?_method=DELETE"
+                                action="/logs/<%= log.slugLog %>/exercises/<%= exercise.slugExercise %>/trsessions/<%= trsession.slugSession %>?_method=DELETE"
                                 method="POST">
                                 <button id="deleteLog">
                                     <li>Delete</li>
@@ -77,7 +77,7 @@
                             volume
                         </td>
                     </tr>
-                    <% for (let [index, set] of session.weights.entries()){%>
+                    <% for (let [index, set] of trsession.weights.entries()){%>
                     <tr>
                         <td scope="row">Set <%=index + 1%></td>
                         <th><%=set.repetitions%></th>
