@@ -10,7 +10,6 @@ const userRoutes = require('./routes/users');
 const logRoutes = require('./routes/logs.js');
 const exerciseRoutes = require('./routes/exercises.js');
 const trsessionRoutes = require('./routes/trsessions.js');
-const mongoose = require('mongoose');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
@@ -21,20 +20,16 @@ const methodOverride = require('method-override');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 const MongoStore = require('connect-mongo');
-const dbUrl =
-  process.env.DB_URL || 'mongodb://localhost:27017/track-my-progress';
-//'mongodb://localhost:27017/track-my-progress'
-// process.env.DB_URL
+const connectDB = require('./config/database.js');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 app.use(express.static(path.join(__dirname, '/public')));
 
-mongoose.connect(dbUrl, {
-  useUnifiedTopology: true,
-});
-
 const secret = process.env.Secret || 'tempsecret';
+
+const dbUrl =
+  process.env.DB_URL || 'mongodb://localhost:27017/track-my-progress';
 
 const store = MongoStore.create({
   mongoUrl: dbUrl,
@@ -116,12 +111,6 @@ app.use('/logs', logRoutes);
 app.use('/logs/:slugLog/exercises', exerciseRoutes);
 app.use('/logs/:slugLog/exercises/:slugExercise/trsessions', trsessionRoutes);
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log('Database connected');
-});
-
 app.all('*', (req, res, next) => {
   next(new ExpressError('Page Not Found', 404));
 });
@@ -133,6 +122,8 @@ app.use((err, req, res, next) => {
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Serving ${port}`);
+connectDB().then(() => {
+  app.listen(port, () => {
+    console.log(`Serving ${port}`);
+  });
 });
