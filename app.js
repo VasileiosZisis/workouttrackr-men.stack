@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 const secret = process.env.Secret || 'tempsecret';
 
 const dbUrl = process.env.DB_URL;
-//  || 'mongodb://localhost:27017/trackmyprogress'
+//process.env.DB_URL || 'mongodb://localhost:27017/trackmyprogress'
 
 const connectDB = async () => {
   try {
@@ -57,13 +57,13 @@ const connectDB = async () => {
 // });
 
 const sessionConfig = {
-  // store: MongoStore.create({
-  //   mongoUrl: dbUrl,
-  //   touchAfter: 24 * 3600,
-  //   crypto: {
-  //     secret,
-  //   },
-  // }),
+  store: MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 3600,
+    crypto: {
+      secret,
+    },
+  }),
   name: 'session',
   secret,
   resave: false,
