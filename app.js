@@ -19,8 +19,8 @@ const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
+const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo');
-const connectDB = require('./config/database.js');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
@@ -28,7 +28,21 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 const secret = process.env.Secret || 'tempsecret';
 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/trackmyprogress';
+const dbUrl = process.env.DB_URL;
+//  || 'mongodb://localhost:27017/trackmyprogress'
+
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(dbUrl, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+};
 
 // const store = MongoStore.create({
 //   mongoUrl: dbUrl,
@@ -46,6 +60,9 @@ const sessionConfig = {
   // store: MongoStore.create({
   //   mongoUrl: dbUrl,
   //   touchAfter: 24 * 3600,
+  //   crypto: {
+  //     secret,
+  //   },
   // }),
   name: 'session',
   secret,
@@ -59,6 +76,7 @@ const sessionConfig = {
   },
 };
 
+app.set('trust proxy', 1);
 app.use(session(sessionConfig));
 app.use(flash());
 
