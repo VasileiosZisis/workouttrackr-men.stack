@@ -6,6 +6,7 @@ const catchAsync = require('../utils/catchAsync');
 const { check, validationResult } = require('express-validator');
 const crypto = require('crypto');
 const User = require('../models/user');
+const async = require('async');
 
 const router = express.Router();
 
