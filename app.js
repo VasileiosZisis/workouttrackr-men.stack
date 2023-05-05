@@ -28,21 +28,25 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 const secret = process.env.Secret || 'tempsecret';
 
-const dbUrl =
-  process.env.DB_URL || 'mongodb://localhost:27017/track-my-progress';
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/trackmyprogress';
 
-const store = MongoStore.create({
-  mongoUrl: dbUrl,
-  secret,
-  touchAfter: 24 * 60 * 60,
-});
+// const store = MongoStore.create({
+//   mongoUrl: dbUrl,
+//   touchAfter: 24 * 60 * 60,
+//   crypto: {
+//     secret,
+//   },
+// });
 
-store.on('error', function (e) {
-  console.log('Session Store Error', e);
-});
+// store.on('error', function (e) {
+//   console.log('Session Store Error', e);
+// });
 
 const sessionConfig = {
-  store,
+  // store: MongoStore.create({
+  //   mongoUrl: dbUrl,
+  //   touchAfter: 24 * 3600,
+  // }),
   name: 'session',
   secret,
   resave: false,
@@ -76,7 +80,7 @@ app.use(helmet({ crossOriginEmbedderPolicy: false }));
 
 const scriptSrcUrls = ['https://cdn.jsdelivr.net/npm/d3@7'];
 const styleSrcUrls = ['https://fonts.googleapis.com'];
-// const connectSrcUrls = [ ];
+const connectSrcUrls = [];
 const fontSrcUrls = ['fonts.gstatic.com'];
 app.use(
   helmet.contentSecurityPolicy({

@@ -228,7 +228,7 @@ router.post(
         },
       ],
       function (err) {
-        res.redirect('/error');
+        return res.redirect('/error');
       }
     );
   })
