@@ -1,5 +1,8 @@
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
+} else if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', 1);
+  sessionConfig.cookie.secure = true;
 }
 
 const express = require('express');
@@ -55,13 +58,6 @@ store.on('error', function (e) {
   console.log('Session Store Error', e);
 });
 
-app.use(session(sessionConfig));
-
-if (process.env.NODE_ENV === 'production') {
-  app.set('trust proxy', 1);
-  sessionConfig.cookie.secure = true;
-}
-
 const sessionConfig = {
   store,
   name: 'session',
@@ -75,6 +71,7 @@ const sessionConfig = {
   },
 };
 
+app.use(session(sessionConfig));
 app.use(flash());
 
 app.use(passport.initialize());
