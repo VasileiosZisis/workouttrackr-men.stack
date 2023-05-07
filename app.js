@@ -26,10 +26,9 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 app.use(express.static(path.join(__dirname, '/public')));
 
-const secret = process.env.Secret || 'tempsecret';
+const secret = process.env.SECRET || 'tempsecret';
 
-const dbUrl = process.env.DB_URL;
-//process.env.DB_URL || 'mongodb://localhost:27017/trackmyprogress'
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/trackmyprogress';
 
 const connectDB = async () => {
   try {
@@ -44,26 +43,20 @@ const connectDB = async () => {
   }
 };
 
-// const store = MongoStore.create({
-//   mongoUrl: dbUrl,
-//   touchAfter: 24 * 60 * 60,
-//   crypto: {
-//     secret,
-//   },
-// });
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  touchAfter: 24 * 60 * 60,
+  crypto: {
+    secret,
+  },
+});
 
-// store.on('error', function (e) {
-//   console.log('Session Store Error', e);
-// });
+store.on('error', function (e) {
+  console.log('Session Store Error', e);
+});
 
 const sessionConfig = {
-  store: MongoStore.create({
-    mongoUrl: dbUrl,
-    touchAfter: 24 * 3600,
-    crypto: {
-      secret,
-    },
-  }),
+  store,
   name: 'session',
   secret,
   resave: false,
