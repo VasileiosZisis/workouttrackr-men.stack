@@ -208,6 +208,7 @@ button {
 }
 
 .div-s-5a {
+  padding-inline: 2rem;
   height: 47vh;
   background-color: var(--darkGrey);
   display: flex;
@@ -216,12 +217,14 @@ button {
 }
 
 .div-s-5b {
+  padding-inline: 2rem;
   height: 47vh;
   background-color: var(--myWhite);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .contact-home {
@@ -588,3 +591,26 @@ th {
   font-weight: 700;
 }
 /* CHART END */
+
+/* QUERIES */
+/* 1050 px */
+@media only screen and (max-width: 65.625em) {
+  .section-4 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .section-4 > * {
+    margin: 2rem;
+  }
+
+  .div-s-4a {
+    padding-bottom: 1rem;
+  }
+
+  .div-s-4b {
+    padding-top: 1rem;
+  }
+}
+/* QUERIES */

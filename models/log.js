@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Exercise = require('./exercise');
+const Trsession = require('./trsession');
 const slug = require('mongoose-slug-updater');
 mongoose.plugin(slug);
 
@@ -32,7 +33,20 @@ LogSchema.post('findOneAndDelete', async function (doc) {
         $in: doc.exercises,
       },
     });
-    console.log(doc);
+  }
+});
+
+LogSchema.virtual('Trsessions', {
+  ref: 'Trsession',
+  localField: '_id',
+  foreignField: 'log',
+});
+
+LogSchema.post('findOneAndDelete', async function (docTr) {
+  if (docTr) {
+    await Trsession.deleteMany({
+      log: docTr._id,
+    });
   }
 });
 

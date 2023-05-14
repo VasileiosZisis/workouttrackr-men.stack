@@ -26,6 +26,7 @@ module.exports.createTrsession = async (req, res) => {
   const trsession = new Trsession(req.body);
   trsession.author = req.user._id;
   trsession.exercise = exercise._id;
+  trsession.log = log._id;
   await trsession.save();
   req.flash('success', 'New session has been created');
   res.redirect(

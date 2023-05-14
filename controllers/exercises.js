@@ -32,17 +32,17 @@ module.exports.showExercise = async (req, res) => {
     { $match: { _id: exercise._id } },
     {
       $lookup: {
-        from: 'sessions',
+        from: 'trsessions',
         localField: '_id',
         foreignField: 'exercise',
-        as: 'sessions',
+        as: 'trsessions',
       },
     },
     {
-      $unwind: '$sessions',
+      $unwind: '$trsessions',
     },
     {
-      $sort: { 'sessions.createdDate': 1 },
+      $sort: { 'trsessions.createdDate': 1 },
     },
     {
       $skip: limit * page - limit,
@@ -56,14 +56,14 @@ module.exports.showExercise = async (req, res) => {
     { $match: { _id: exercise._id } },
     {
       $lookup: {
-        from: 'sessions',
+        from: 'trsessions',
         localField: '_id',
         foreignField: 'exercise',
-        as: 'sessions',
+        as: 'trsessions',
       },
     },
     {
-      $unwind: '$sessions',
+      $unwind: '$trsessions',
     },
     {
       $count: 'count',

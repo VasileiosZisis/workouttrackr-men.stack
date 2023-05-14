@@ -43,6 +43,10 @@ const trsessionSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Exercise',
     },
+    log: {
+      type: Schema.Types.ObjectId,
+      ref: 'Log',
+    },
     author: {
       type: Schema.Types.ObjectId,
       ref: 'User',
