@@ -1,14 +1,15 @@
 // ADD SETS HTML FORM
 const form = document.querySelector('#div-set');
+const sets = document.querySelectorAll('.sets');
 const addBtn = document.querySelector('#add-set');
 const delBtn = document.querySelector('#delete-set');
 
 addBtn.classList.add('link');
 
-delBtn.disabled = true;
+delBtn.disabled = false;
 
-let setNumber = 1;
-let arrayNumber = 0;
+let setNumber = sets.length;
+let arrayNumber = sets.length - 1;
 
 function addField() {
   setNumber++;
@@ -24,6 +25,7 @@ function addField() {
   const kgslabel = document.createElement('LABEL');
 
   const field = document.createElement('div');
+  field.classList.add('sets');
 
   const fieldTwo = document.createElement('div');
   fieldTwo.classList.add('form-contents', 'margin-1');
@@ -60,14 +62,20 @@ function addField() {
   fieldKgs.append(kgslabel, kgsInput);
 
   toggleDelBtn();
+  console.log(form.lastElementChild);
+  console.log(arrayNumber);
+  console.log(setNumber);
 }
 
 function removeField() {
-  form.removeChild(form.lastChild);
+  form.removeChild(form.lastElementChild);
   setNumber--;
   arrayNumber--;
 
   toggleDelBtn();
+  console.log(form.lastElementChild);
+  console.log(arrayNumber);
+  console.log(setNumber);
 }
 
 function toggleDelBtn() {
@@ -81,3 +89,7 @@ function toggleDelBtn() {
 addBtn.addEventListener('click', addField);
 
 delBtn.addEventListener('click', removeField);
+
+console.log(form.lastElementChild);
+console.log(arrayNumber);
+console.log(setNumber);

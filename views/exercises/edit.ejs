@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/main.css">
-    <title>Edit Exercise</title>
+    <title>Edit <%= exercise.title %></title>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
 
     <main>
         <div class="h1-container margin-1">
-            <h1><%= exercise.title %></h1>
+            <h1>Edit <%= exercise.title %></h1>
         </div>
         <div class="form-container">
             <form action="/logs/<%= log.slugLog %>/exercises/<%= exercise.slugExercise %>?_method=PUT" method="POST">

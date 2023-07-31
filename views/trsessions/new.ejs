@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/main.css">
-    <title>Create a new Session</title>
+    <title>Add a new Session</title>
 </head>
 
 <body>
@@ -14,51 +14,97 @@
     <%- include('../partials/navbar.ejs') %>
 
     <main>
-        <div class="h1-container margin-1">
-            <h1>Start a new session</h1>
-        </div>
-        <div class="form-container">
-            <form action="/logs/<%= log.slugLog %>/exercises/<%= exercise.slugExercise %>/trsessions" method="POST">
-                <div class="form-contents">
-                    <label for="createdDate">Date:</label>
-                    <input type="date" id="createdDate" name="createdDate" required>
+        <section class="flex-row">
+            <div>
+                <% if (showPrevious) { %>
+                <div class="h2-container">
+                    <h2>Previous session</h>
                 </div>
-                <div id="div-set">
-                    <div>
-                        <h2 class="margin-1">Set 1</h2>
-                        <div class="form-contents margin-1">
+                <div class="flex-row-table">
+                    <a class="table-a table-container">
+                        <table>
+                            <tr>
+                                <td>
+                                    &nbsp;
+                                </td>
+                                <td>
+                                    reps
+                                </td>
+                                <td>
+                                    kgs
+                                </td>
+                                <td>
+                                    volume
+                                </td>
+                            </tr>
+
+                            <% for (let [index, set] of showPrevious.weights.entries()){%>
+                            <tr>
+                                <td scope="row">Set <%=index + 1%></td>
+                                <th><%=set.repetitions%></th>
+                                <th><%=set.kilograms%></th>
+                                <th><%=set.volume.toFixed(2)%></th>
+                            </tr>
+                            <% } %>
+                        </table>
+                    </a>
+                </div>
+                <% } %>
+            </div>
+            <div>
+                <div class="h1-container margin-1">
+                    <h1><%=exercise.title%></h1>
+                </div>
+                <div class="h2-container margin-1">
+                    <h2>Start a new session</h2>
+                </div>
+                <div class="form-container">
+                    <form action="/logs/<%= log.slugLog %>/exercises/<%= exercise.slugExercise %>/trsessions"
+                        method="POST">
+                        <div class="form-contents">
                             <div>
-                                <label for="repetitions">Repetitions</label>
-                                <input type="number" step="0.01" min="0" id="repetitions" name="weights[0][repetitions]"
-                                    required autofocus>
+                                <label for="createdDate">Date:</label>
+                                <input type="date" id="createdDate" name="createdDate" required>
                             </div>
-                            <div>
-                                <label for="kilograms">Kilograms</label>
-                                <input type="number" step="0.01" min="0" id="kilograms" name="weights[0][kilograms]"
-                                    required>
+                            <div id="div-set">
+                                <div>
+                                    <h3 class="margin-1">Set 1</h3>
+                                    <div class="form-contents margin-1">
+                                        <div>
+                                            <label for="repetitions">Repetitions</label>
+                                            <input type="number" step="0.01" min="0" id="repetitions"
+                                                name="weights[0][repetitions]" required autofocus>
+                                        </div>
+                                        <div>
+                                            <label for="kilograms">Kilograms</label>
+                                            <input type="number" step="0.01" min="0" id="kilograms"
+                                                name="weights[0][kilograms]" required>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="flex-row margin-1">
+                            <div class="link-container">
+                                <button class="link" type="button" id="delete-set">Delete Set</button>
+                            </div>
+                            <div class="link-container">
+                                <button class="link" type="button" id="add-set">Add Set</button>
+                            </div>
+                        </div>
+                        <div class="flex-row margin-1">
+                            <div class="link-container">
+                                <a class="link"
+                                    href="/logs/<%= log.slugLog %>/exercises/<%= exercise.slugExercise %>">Cancel</a>
+                            </div>
+                            <div class="link-container">
+                                <button class="button">Add</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="flex-row margin-1">
-                    <div class="link-container">
-                        <button class="link" type="button" id="delete-set">Delete Set</button>
-                    </div>
-                    <div class="link-container">
-                        <button class="link" type="button" id="add-set">Add Set</button>
-                    </div>
-                </div>
-                <div class="flex-row margin-1">
-                    <div class="link-container">
-                        <a class="link"
-                            href="/logs/<%= log.slugLog %>/exercises/<%= exercise.slugExercise %>">Cancel</a>
-                    </div>
-                    <div class="link-container">
-                        <button class="button">Add</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+            </div>
+        </section>
     </main>
     <script src="/javascripts/addSets.js"></script>
     <script src="/javascripts/defaultDate.js"></script>

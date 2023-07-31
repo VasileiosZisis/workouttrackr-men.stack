@@ -15,7 +15,10 @@ module.exports.newTrsessionForm = async (req, res) => {
   const exercise = await Exercise.findOne({
     slugExercise: req.params.slugExercise,
   });
-  res.render('trsessions/new', { log, exercise });
+
+  const showPrevious = await Trsession.findOne().sort({ createdAt: -1 });
+
+  res.render('trsessions/new', { log, exercise, showPrevious });
 };
 
 module.exports.createTrsession = async (req, res) => {
@@ -64,7 +67,7 @@ module.exports.updateTrsession = async (req, res) => {
   const trsession = await Trsession.findOneAndUpdate(
     { slugSession: req.params.slugSession },
     { ...req.body },
-    { returnDocument: 'after' }
+    { new: true }
   );
   req.flash('success', 'Your changes have been saved');
   res.redirect(

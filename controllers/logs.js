@@ -149,7 +149,7 @@ module.exports.updateLog = async (req, res) => {
     { slugLog: req.params.slugLog },
     { ...req.body },
     {
-      returnDocument: 'after',
+      new: true,
     }
   );
   req.flash('success', 'Your changes has been saved');

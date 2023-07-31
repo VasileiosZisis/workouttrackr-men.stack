@@ -42,8 +42,14 @@
                 <h1 class="h1-home"><span class="font-3">Log</span> your training,<br><span class="font-3">Track</span>
                     your
                     progress</h1>
+
                 <div class="link-home margin-2">
+                    <% if(!currentUser) { %>
                     <a href="/register" class="register-home">Register</a>
+                    <% } else { %>
+                    <h2 class="h2-home-gold">Welcome</h2> <br>
+                    <a class='current-user' href="/logs"><%= currentUser.username %></a>
+                    <% } %>
                 </div>
             </div>
         </div>

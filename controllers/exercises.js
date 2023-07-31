@@ -119,14 +119,13 @@ module.exports.editExerciseForm = async (req, res) => {
 
 module.exports.exerciseUpdate = async (req, res) => {
   const log = await Log.findOne({ slugLog: req.params.slugLog });
-  const exercise = await Exercise.findOne({
-    slugExercise: req.params.slugExercise,
-  });
-  await Exercise.findOneAndUpdate(
-    exercise,
+  const exercise = await Exercise.findOneAndUpdate(
+    {
+      slugExercise: req.params.slugExercise,
+    },
     { ...req.body },
     {
-      returnDocument: 'after',
+      new: true,
     }
   );
   req.flash('success', 'Your changes has been saved');
