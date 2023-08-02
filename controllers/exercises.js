@@ -42,7 +42,7 @@ module.exports.showExercise = async (req, res) => {
       $unwind: '$trsessions',
     },
     {
-      $sort: { 'trsessions.createdDate': 1 },
+      $sort: { 'trsessions._id': -1 },
     },
     {
       $skip: limit * page - limit,

@@ -16,7 +16,26 @@ module.exports.newTrsessionForm = async (req, res) => {
     slugExercise: req.params.slugExercise,
   });
 
-  const showPrevious = await Trsession.findOne().sort({ createdAt: -1 });
+  const showPrevious = await Exercise.aggregate([
+    { $match: { _id: exercise._id } },
+    {
+      $lookup: {
+        from: 'trsessions',
+        localField: '_id',
+        foreignField: 'exercise',
+        as: 'trsessions',
+      },
+    },
+    {
+      $unwind: '$trsessions',
+    },
+    {
+      $sort: { 'trsessions.createdDate': -1 },
+    },
+    {
+      $limit: 1,
+    },
+  ]);
 
   res.render('trsessions/new', { log, exercise, showPrevious });
 };

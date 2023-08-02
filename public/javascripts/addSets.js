@@ -32,11 +32,12 @@ function addField() {
   const fieldKgs = document.createElement('div');
 
   const title = document.createElement('h3');
-  title.classList.add('margin-1');
+  title.classList.add('margin-1', 'h3-trsessions-form');
   title.innerHTML = `Set ${setNumber}`;
 
   const repsInput = document.createElement('input');
   repslabel.setAttribute('for', 'repetitions');
+  repslabel.classList.add('label-trsessions-form');
   repslabel.innerHTML = 'Repetitions';
   repsInput.type = 'number';
   repsInput.step = '0.01';
@@ -46,6 +47,7 @@ function addField() {
 
   const kgsInput = document.createElement('input');
   kgslabel.setAttribute('for', 'kilograms');
+  kgslabel.classList.add('label-trsessions-form');
   kgslabel.innerHTML = 'Kilograms';
   kgsInput.type = 'number';
   kgsInput.step = '0.01';

@@ -72,7 +72,7 @@ module.exports.showLog = async (req, res) => {
       $project: { 'exercises.sessions': 0 },
     },
     {
-      $sort: { 'exercises.updatedAt': -1, 'exercises.createdAt': -1 },
+      $sort: { 'exercises._id': -1 },
     },
     {
       $skip: limit * page - limit,

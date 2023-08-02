@@ -311,6 +311,10 @@ label {
   line-height: 160%;
 }
 
+.label-trsessions-form {
+  line-height: 100%;
+}
+
 input[type='text'],
 input[type='email'],
 input[type='date'],
@@ -378,6 +382,10 @@ h3 {
   line-height: 180%;
 }
 
+.h3-trsessions-form {
+  line-height: 100%;
+}
+
 .main-p {
   background-color: inherit;
   color: var(--myWhite);
@@ -429,7 +437,8 @@ h3 {
 
 .ul-container ul li,
 .form-contents div {
-  padding: 0.3rem;
+  padding-block: 0.3rem;
+  padding-inline: 0.6rem;
   transition: background-color 0.5s;
   border-radius: 0.5rem;
 }

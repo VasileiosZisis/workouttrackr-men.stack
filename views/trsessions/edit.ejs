@@ -29,17 +29,18 @@
                     <div id="div-set">
                         <% for(let [i,set] of trsession.weights.entries()){%>
                         <div class="sets">
-                            <h3 class="margin-1">
+                            <h3 class="margin-1 h3-trsessions-form">
                                 Set <%=[i + 1] %>
                             </h3>
                             <div class="form-contents margin-1">
                                 <div>
-                                    <label for="repetitions">Repetitions</label>
+                                    <label class="label-trsessions-form" for="repetitions">Repetitions</label>
                                     <input type="number" id="repetitions" name="weights[<%= [i] %>][repetitions]"
                                         value="<%= set.repetitions %>">
                                 </div>
                                 <div>
-                                    <label for="kilograms">Kilograms</label>
+                                    <label class="label-trsessions-form"
+                                        for="kilograms .label-trsessions-form">Kilograms</label>
                                     <input type="number" id="kilograms" name="weights[<%= [i] %>][kilograms]"
                                         value="<%= set.kilograms %>">
                                 </div>
