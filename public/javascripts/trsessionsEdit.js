@@ -1,4 +1,3 @@
-// ADD SETS HTML FORM
 const form = document.querySelector('#div-set');
 const sets = document.querySelectorAll('.sets');
 const addBtn = document.querySelector('#add-set');
@@ -6,20 +5,16 @@ const delBtn = document.querySelector('#delete-set');
 
 addBtn.classList.add('link');
 
-delBtn.disabled = false;
-
 let setNumber = sets.length;
 let arrayNumber = sets.length - 1;
+
+if (setNumber === 1) {
+  delBtn.disabled = true;
+}
 
 function addField() {
   setNumber++;
   arrayNumber++;
-
-  if (arrayNumber >= 1) {
-    delBtn.disabled = false;
-  } else {
-    delBtn.disabled = true;
-  }
 
   const repslabel = document.createElement('LABEL');
   const kgslabel = document.createElement('LABEL');
@@ -39,6 +34,7 @@ function addField() {
 
   const repsInput = document.createElement('input');
   repslabel.setAttribute('for', 'repetitions');
+  repslabel.classList.add('label-trsessions-form');
   repslabel.innerHTML = 'Repetitions';
   repsInput.type = 'number';
   repsInput.step = '0.01';
@@ -48,6 +44,7 @@ function addField() {
 
   const kgsInput = document.createElement('input');
   kgslabel.setAttribute('for', 'kilograms');
+  kgslabel.classList.add('label-trsessions-form');
   kgslabel.innerHTML = 'Kilograms';
   kgsInput.type = 'number';
   kgsInput.step = '0.01';
@@ -62,9 +59,6 @@ function addField() {
   fieldKgs.append(kgslabel, kgsInput);
 
   toggleDelBtn();
-  console.log(form.lastElementChild);
-  console.log(arrayNumber);
-  console.log(setNumber);
 }
 
 function removeField() {
@@ -73,9 +67,6 @@ function removeField() {
   arrayNumber--;
 
   toggleDelBtn();
-  console.log(form.lastElementChild);
-  console.log(arrayNumber);
-  console.log(setNumber);
 }
 
 function toggleDelBtn() {
@@ -89,7 +80,3 @@ function toggleDelBtn() {
 addBtn.addEventListener('click', addField);
 
 delBtn.addEventListener('click', removeField);
-
-console.log(form.lastElementChild);
-console.log(arrayNumber);
-console.log(setNumber);

@@ -1,4 +1,3 @@
-// ADD SETS HTML FORM
 const form = document.querySelector('#div-set');
 const addBtn = document.querySelector('#add-set');
 const delBtn = document.querySelector('#delete-set');
@@ -13,12 +12,6 @@ let arrayNumber = 0;
 function addField() {
   setNumber++;
   arrayNumber++;
-
-  if (arrayNumber >= 1) {
-    delBtn.disabled = false;
-  } else {
-    delBtn.disabled = true;
-  }
 
   const repslabel = document.createElement('LABEL');
   const kgslabel = document.createElement('LABEL');
