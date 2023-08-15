@@ -24,7 +24,7 @@
         </div>
         <div class="flex-row">
             <div class="h1-container">
-                <% if (trsession.createdDateRen.toLocaleDateString()) { %>
+                <% if (trsession.createdDateRen) { %>
                 <h1><%= trsession.createdDateRen.toLocaleDateString() %></h1>
                 <% } else { %>
                 <h1><%= trsession.createdDate %></h1>
