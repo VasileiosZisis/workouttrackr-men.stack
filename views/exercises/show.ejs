@@ -77,7 +77,11 @@
                 <table>
                     <tr>
                         <th colspan="4" scope="col">
+                            <% if (exerciseItem.trsessions.createdDateRen.toLocaleDateString()) { %>
                             <%= exerciseItem.trsessions.createdDateRen.toLocaleDateString() %>
+                            <% } else { %>
+                            <%= exerciseItem.trsessions.createdDate.toLocaleDateString() %>
+                            <% } %>
                         </th>
                     </tr>
                     <tr>

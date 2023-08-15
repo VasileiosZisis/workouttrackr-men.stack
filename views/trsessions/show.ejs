@@ -24,7 +24,11 @@
         </div>
         <div class="flex-row">
             <div class="h1-container">
+                <% if (trsession.createdDateRen.toLocaleDateString()) { %>
                 <h1><%= trsession.createdDateRen.toLocaleDateString() %></h1>
+                <% } else { %>
+                <h1><%= trsession.createdDate.toLocaleDateString() %></h1>
+                <% } %>
             </div>
             <% if(currentUser && trsession.author.equals(currentUser._id)) { %>
             <div class="link-container">
