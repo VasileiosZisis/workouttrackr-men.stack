@@ -27,7 +27,7 @@
                 <% if (trsession.createdDateRen.toLocaleDateString()) { %>
                 <h1><%= trsession.createdDateRen.toLocaleDateString() %></h1>
                 <% } else { %>
-                <h1><%= trsession.createdDate.toLocaleDateString() %></h1>
+                <h1><%= trsession.createdDate %></h1>
                 <% } %>
             </div>
             <% if(currentUser && trsession.author.equals(currentUser._id)) { %>
