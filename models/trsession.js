@@ -5,16 +5,21 @@ mongoose.plugin(slug);
 
 const trsessionSchema = new Schema(
   {
-    createdDate: {
+    createdDateRen: {
       type: Date,
       default: Date.now,
     },
+    createdDate: {
+      type: String,
+      default: function () {
+        return new Date().toISOString().slice(0, 10);
+      },
+    },
     slugSession: {
       type: String,
-      slug: 'createdAt',
+      slug: 'createdDate',
       unique: true,
       permanent: true,
-      transform: (v) => v.toLocaleDateString(),
     },
     weights: [
       new Schema({
@@ -52,12 +57,19 @@ const trsessionSchema = new Schema(
       ref: 'User',
     },
   },
-  // {
-  //   toJSON: { virtuals: true },
-  //   toObject: { virtuals: true },
-  // },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  },
   { timestamps: true }
 );
+
+trsessionSchema.post('findOneAndUpdate', async function () {
+  const docToUpdate = await this.model.findOne(this.getQuery());
+  const result = await docToUpdate.weights.map((a) => a.volume);
+  docToUpdate.totalVolume = await result.reduce((acc, cur) => acc + cur, 0);
+  await docToUpdate.save();
+});
 
 // trsessionSchema.virtual('totalVolume').get(function () {
 //   const result = this.weights.map((a) => a.volume);
@@ -66,20 +78,6 @@ const trsessionSchema = new Schema(
 //   } else {
 //     return (result = 0);
 //   }
-// });
-
-// trsessionSchema.pre('findOneAndUpdate', async function () {
-//   console.log('I am working');
-//   this.set({
-//     totalVolume: function () {
-//       const result = this.weights.map((a) => a.volume);
-//       if (result.length) {
-//         return result.reduce((acc, cur) => acc + cur, 0);
-//       } else {
-//         return (result = 0);
-//       }
-//     },
-//   });
 // });
 
 module.exports = mongoose.model('Trsession', trsessionSchema);

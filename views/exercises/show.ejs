@@ -77,13 +77,15 @@
                 <table>
                     <tr>
                         <th colspan="4" scope="col">
-                            <%= exerciseItem.trsessions.createdDate.toLocaleDateString() %>
+                            <%= exerciseItem.trsessions.createdDateRen.toLocaleDateString() %>
                         </th>
                     </tr>
                     <tr>
                         <td colspan="3" scope="col">
                             Total Volume
                         </td>
+                        <!-- const result = exerciseItem.trsessions.weights.map((a) => a.volume); 
+                         const totalVolume = result.reduce((acc, cur) => acc + cur, 0);  -->
                         <th colspan="1" scope="col" class="totalVolume"
                             data-totalvolume='<%= exerciseItem.trsessions.totalVolume %>'>
                             <%= exerciseItem.trsessions.totalVolume %>

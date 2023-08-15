@@ -10,6 +10,7 @@ let setNumber = 1;
 let arrayNumber = 0;
 
 function addField() {
+  document.activeElement.blur();
   setNumber++;
   arrayNumber++;
 
@@ -53,6 +54,8 @@ function addField() {
   fieldTwo.append(fieldReps, fieldKgs);
   fieldReps.append(repslabel, repsInput);
   fieldKgs.append(kgslabel, kgsInput);
+
+  repsInput.focus();
 
   toggleDelBtn();
 }

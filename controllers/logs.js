@@ -69,9 +69,6 @@ module.exports.showLog = async (req, res) => {
       $unwind: '$exercises',
     },
     {
-      $project: { 'exercises.sessions': 0 },
-    },
-    {
       $sort: { 'exercises._id': -1 },
     },
     {
