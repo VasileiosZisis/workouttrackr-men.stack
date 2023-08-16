@@ -5,19 +5,16 @@ mongoose.plugin(slug);
 
 const trsessionSchema = new Schema(
   {
-    createdDateRen: {
+    createdDate: {
       type: Date,
       default: Date.now,
     },
-    createdDate: {
+    createdDateSlug: {
       type: String,
-      default: function () {
-        return new Date().toISOString().slice(0, 10);
-      },
     },
     slugSession: {
       type: String,
-      slug: 'createdDate',
+      slug: 'createdDateSlug',
       unique: true,
       permanent: true,
     },
@@ -63,6 +60,10 @@ const trsessionSchema = new Schema(
   },
   { timestamps: true }
 );
+
+trsessionSchema.pre('save', async function () {
+  this.createdDateSlug = await this.createdDate.toISOString().slice(0, 10);
+});
 
 trsessionSchema.post('findOneAndUpdate', async function () {
   const docToUpdate = await this.model.findOne(this.getQuery());
