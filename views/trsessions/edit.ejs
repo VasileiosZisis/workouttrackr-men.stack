@@ -24,7 +24,8 @@
                 <div class="form-contents">
                     <div>
                         <label for="createdDate">Date:</label>
-                        <input type="date" id="createdDate" name="createdDate">
+                        <input type="date" id="createdDate" name="createdDate"
+                            value="<%= trsession.createdDate.toISOString().slice(0, 10) %>">
                     </div>
                     <div id="div-set">
                         <% for(let [i,set] of trsession.weights.entries()){%>
@@ -69,7 +70,7 @@
             </form>
         </div>
     </main>
-    <script src="/javascripts/defaultDate.js"></script>
+    <!-- <script src="/javascripts/defaultDate.js"></script> -->
     <script src="/javascripts/trsessionsEdit.js"></script>
 </body>
 
