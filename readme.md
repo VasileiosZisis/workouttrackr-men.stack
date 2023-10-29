@@ -1,6 +1,6 @@
 # WORKOUT TRACKER
 
-Visit the websire [here](https://www.workouttrackr.com/)
+Visit the website [here](https://www.workouttrackr.com/)
 
 ### A Workout Tracker
 
